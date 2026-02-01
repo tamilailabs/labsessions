@@ -1,0 +1,2294 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document source="attention.pdf">
+  <page number="1" width="918.0" height="1188.0">
+    <image src="attention001.png" width="918" height="1188"/>
+    <text cls="ft00" top="111" left="187">
+      <line>Provided proper attribution is provided, Google hereby grants permission to</line>
+    </text>
+    <text cls="ft00" top="132" left="186">
+      <line>reproduce the tables and figures in this paper solely for use in journalistic or</line>
+    </text>
+    <text cls="ft00" top="153" left="401">
+      <line>scholarly works.</line>
+    </text>
+    <text cls="ft01" top="225" left="317">
+      <line>Attention Is All You Need</line>
+    </text>
+    <text cls="ft02" top="354" left="199">
+      <line>Ashish Vaswani</line>
+    </text>
+    <text cls="ft03" top="351" left="300">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="370" left="209">
+      <line>Google Brain</line>
+    </text>
+    <text cls="ft05" top="388" left="175">
+      <line>avaswani@google.com</line>
+    </text>
+    <text cls="ft02" top="354" left="359">
+      <line>Noam Shazeer</line>
+    </text>
+    <text cls="ft03" top="351" left="451">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="370" left="364">
+      <line>Google Brain</line>
+    </text>
+    <text cls="ft05" top="388" left="346">
+      <line>noam@google.com</line>
+    </text>
+    <text cls="ft02" top="354" left="508">
+      <line>Niki Parmar</line>
+    </text>
+    <text cls="ft03" top="351" left="589">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="370" left="497">
+      <line>Google Research</line>
+    </text>
+    <text cls="ft05" top="388" left="486">
+      <line>nikip@google.com</line>
+    </text>
+    <text cls="ft02" top="354" left="636">
+      <line>Jakob Uszkoreit</line>
+    </text>
+    <text cls="ft03" top="351" left="740">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="370" left="637">
+      <line>Google Research</line>
+    </text>
+    <text cls="ft05" top="388" left="633">
+      <line>usz@google.com</line>
+    </text>
+    <text cls="ft02" top="429" left="216">
+      <line>Llion Jones</line>
+    </text>
+    <text cls="ft03" top="426" left="290">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="445" left="202">
+      <line>Google Research</line>
+    </text>
+    <text cls="ft05" top="463" left="190">
+      <line>llion@google.com</line>
+    </text>
+    <text cls="ft02" top="429" left="373">
+      <line>Aidan N. Gomez</line>
+    </text>
+    <text cls="ft03" top="426" left="479">
+      <line>∗ †</line>
+    </text>
+    <text cls="ft04" top="445" left="367">
+      <line>University of Toronto</line>
+    </text>
+    <text cls="ft05" top="463" left="353">
+      <line>aidan@cs.toronto.edu</line>
+    </text>
+    <text cls="ft02" top="429" left="591">
+      <line>Łukasz Kaiser</line>
+    </text>
+    <text cls="ft03" top="426" left="684">
+      <line>∗</line>
+    </text>
+    <text cls="ft04" top="445" left="597">
+      <line>Google Brain</line>
+    </text>
+    <text cls="ft05" top="463" left="547">
+      <line>lukaszkaiser@google.com</line>
+    </text>
+    <text cls="ft02" top="504" left="403">
+      <line>Illia Polosukhin</line>
+    </text>
+    <text cls="ft03" top="501" left="504">
+      <line>∗ ‡</line>
+    </text>
+    <text cls="ft05" top="521" left="357">
+      <line>illia.polosukhin@gmail.com</line>
+    </text>
+    <text cls="ft06" top="580" left="426">
+      <line>Abstract</line>
+    </text>
+    <text cls="ft04" top="621" left="215">
+      <line>The dominant sequence transduction models are based on complex recurrent or</line>
+    </text>
+    <text cls="ft010" top="638" left="216">
+      <line>convolutional neural networks that include an encoder and a decoder. The best</line>
+      <line>performing models also connect the encoder and decoder through an attention</line>
+      <line>mechanism. We propose a new simple network architecture, the Transformer,</line>
+      <line>based solely on attention mechanisms, dispensing with recurrence and convolutions</line>
+      <line>entirely. Experiments on two machine translation tasks show these models to</line>
+      <line>be superior in quality while being more parallelizable and requiring significantly</line>
+      <line>less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-</line>
+      <line>to-German translation task, improving over the existing best results, including</line>
+      <line>ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,</line>
+      <line>our model establishes a new single-model state-of-the-art BLEU score of 41.8 after</line>
+      <line>training for 3.5 days on eight GPUs, a small fraction of the training costs of the</line>
+      <line>best models from the literature. We show that the Transformer generalizes well to</line>
+      <line>other tasks by applying it successfully to English constituency parsing both with</line>
+      <line>large and limited training data.</line>
+    </text>
+    <text cls="ft07" top="896" left="180">
+      <line>∗</line>
+    </text>
+    <text cls="ft08" top="900" left="186">
+      <line>Equal contribution. Listing order is random. Jakob proposed replacing RNNs with self-attention and started</line>
+    </text>
+    <text cls="ft011" top="915" left="162">
+      <line>the effort to evaluate this idea. Ashish, with Illia, designed and implemented the first Transformer models and</line>
+      <line>has been crucially involved in every aspect of this work. Noam proposed scaled dot-product attention, multi-head</line>
+      <line>attention and the parameter-free position representation and became the other person involved in nearly every</line>
+      <line>detail. Niki designed, implemented, tuned and evaluated countless model variants in our original codebase and</line>
+      <line>tensor2tensor. Llion also experimented with novel model variants, was responsible for our initial codebase, and</line>
+      <line>efficient inference and visualizations. Lukasz and Aidan spent countless long days designing various parts of and</line>
+      <line>implementing tensor2tensor, replacing our earlier codebase, greatly improving results and massively accelerating</line>
+      <line>our research.</line>
+    </text>
+    <text cls="ft07" top="1032" left="180">
+      <line>†</line>
+    </text>
+    <text cls="ft08" top="1036" left="186">
+      <line>Work performed while at Google Brain.</line>
+    </text>
+    <text cls="ft07" top="1049" left="180">
+      <line>‡</line>
+    </text>
+    <text cls="ft08" top="1052" left="186">
+      <line>Work performed while at Google Research.</line>
+    </text>
+    <text cls="ft08" top="1101" left="162">
+      <line>31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA.</line>
+    </text>
+    <text cls="ft09" top="812" left="48">
+      <line>arXiv:1706.03762v7  [cs.CL]  2 Aug 2023</line>
+    </text>
+  </page>
+  <page number="2" width="918.0" height="1188.0">
+    <image src="attention002.png" width="918" height="1188"/>
+    <text cls="ft06" top="111" left="162">
+      <line>1</line>
+    </text>
+    <text cls="ft06" top="111" left="189">
+      <line>Introduction</line>
+    </text>
+    <text cls="ft010" top="150" left="162">
+      <line>Recurrent neural networks, long short-term memory &lt;a href="attention.html#11"&gt;[13] &lt;/a&gt;and gated recurrent &lt;a href="attention.html#11"&gt;[7] &lt;/a&gt;neural networks</line>
+      <line>in particular, have been firmly established as state of the art approaches in sequence modeling and</line>
+      <line>transduction problems such as language modeling and machine translation &lt;a href="attention.html#12"&gt;[35, &lt;/a&gt;&lt;a href="attention.html#10"&gt;2, &lt;/a&gt;&lt;a href="attention.html#11"&gt;5]. &lt;/a&gt;Numerous</line>
+      <line>efforts have since continued to push the boundaries of recurrent language models and encoder-decoder</line>
+      <line>architectures &lt;a href="attention.html#12"&gt;[38, &lt;/a&gt;&lt;a href="attention.html#11"&gt;24, 15].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="240" left="162">
+      <line>Recurrent models typically factor computation along the symbol positions of the input and output</line>
+      <line>sequences. Aligning the positions to steps in computation time, they generate a sequence of hidden</line>
+      <line>states</line>
+    </text>
+    <text cls="ft04" top="273" left="212">
+      <line>, as a function of the previous hidden state</line>
+    </text>
+    <text cls="ft03" top="277" left="480">
+      <line>−</line>
+    </text>
+    <text cls="ft04" top="273" left="499">
+      <line>and the input for position</line>
+    </text>
+    <text cls="ft04" top="273" left="658">
+      <line>. This inherently</line>
+    </text>
+    <text cls="ft010" top="289" left="162">
+      <line>sequential nature precludes parallelization within training examples, which becomes critical at longer</line>
+      <line>sequence lengths, as memory constraints limit batching across examples. Recent work has achieved</line>
+      <line>significant improvements in computational efficiency through factorization tricks &lt;a href="attention.html#11"&gt;[21] &lt;/a&gt;and conditional</line>
+      <line>computation &lt;a href="attention.html#12"&gt;[32], &lt;/a&gt;while also improving model performance in case of the latter. The fundamental</line>
+      <line>constraint of sequential computation, however, remains.</line>
+    </text>
+    <text cls="ft04" top="379" left="161">
+      <line>Attention mechanisms have become an integral part of compelling sequence modeling and transduc-</line>
+    </text>
+    <text cls="ft010" top="395" left="162">
+      <line>tion models in various tasks, allowing modeling of dependencies without regard to their distance in</line>
+      <line>the input or output sequences &lt;a href="attention.html#10"&gt;[2, &lt;/a&gt;&lt;a href="attention.html#11"&gt;19]. &lt;/a&gt;In all but a few cases &lt;a href="attention.html#12"&gt;[27], &lt;/a&gt;however, such attention mechanisms</line>
+      <line>are used in conjunction with a recurrent network.</line>
+    </text>
+    <text cls="ft010" top="453" left="162">
+      <line>In this work we propose the Transformer, a model architecture eschewing recurrence and instead</line>
+      <line>relying entirely on an attention mechanism to draw global dependencies between input and output.</line>
+    </text>
+    <text cls="ft04" top="485" left="162">
+      <line>The Transformer allows for significantly more parallelization and can reach a new state of the art in</line>
+    </text>
+    <text cls="ft04" top="502" left="162">
+      <line>translation quality after being trained for as little as twelve hours on eight P100 GPUs.</line>
+    </text>
+    <text cls="ft06" top="546" left="162">
+      <line>2</line>
+    </text>
+    <text cls="ft06" top="546" left="189">
+      <line>Background</line>
+    </text>
+    <text cls="ft04" top="585" left="162">
+      <line>The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU</line>
+    </text>
+    <text cls="ft010" top="602" left="162">
+      <line>&lt;a href="attention.html#11"&gt;[16], &lt;/a&gt;ByteNet &lt;a href="attention.html#11"&gt;[18] &lt;/a&gt;and ConvS2S &lt;a href="attention.html#11"&gt;[9], &lt;/a&gt;all of which use convolutional neural networks as basic building</line>
+      <line>block, computing hidden representations in parallel for all input and output positions. In these models,</line>
+      <line>the number of operations required to relate signals from two arbitrary input or output positions grows</line>
+      <line>in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes</line>
+      <line>it more difficult to learn dependencies between distant positions &lt;a href="attention.html#11"&gt;[12]. &lt;/a&gt;In the Transformer this is</line>
+      <line>reduced to a constant number of operations, albeit at the cost of reduced effective resolution due</line>
+      <line>to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as</line>
+      <line>described in section &lt;a href="attention.html#3"&gt;3.2.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="741" left="162">
+      <line>Self-attention, sometimes called intra-attention is an attention mechanism relating different positions</line>
+      <line>of a single sequence in order to compute a representation of the sequence. Self-attention has been</line>
+      <line>used successfully in a variety of tasks including reading comprehension, abstractive summarization,</line>
+      <line>textual entailment and learning task-independent sentence representations &lt;a href="attention.html#10"&gt;[4, &lt;/a&gt;&lt;a href="attention.html#12"&gt;27, 28, &lt;/a&gt;&lt;a href="attention.html#11"&gt;22].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="814" left="162">
+      <line>End-to-end memory networks are based on a recurrent attention mechanism instead of sequence-</line>
+      <line>aligned recurrence and have been shown to perform well on simple-language question answering and</line>
+      <line>language modeling tasks &lt;a href="attention.html#12"&gt;[34].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="872" left="162">
+      <line>To the best of our knowledge, however, the Transformer is the first transduction model relying</line>
+    </text>
+    <text cls="ft010" top="888" left="162">
+      <line>entirely on self-attention to compute representations of its input and output without using sequence-</line>
+      <line>aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate</line>
+      <line>self-attention and discuss its advantages over models such as &lt;a href="attention.html#11"&gt;[17, 18] &lt;/a&gt;and &lt;a href="attention.html#11"&gt;[9].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft06" top="965" left="162">
+      <line>3</line>
+    </text>
+    <text cls="ft06" top="965" left="189">
+      <line>Model Architecture</line>
+    </text>
+    <text cls="ft010" top="1004" left="162">
+      <line>Most competitive neural sequence transduction models have an encoder-decoder structure &lt;a href="attention.html#11"&gt;[5, &lt;/a&gt;&lt;a href="attention.html#10"&gt;2, &lt;/a&gt;&lt;a href="attention.html#12"&gt;35].</line>
+      <line>&lt;/a&gt;Here, the encoder maps an input sequence of symbol representations</line>
+    </text>
+    <text cls="ft04" top="1021" left="671">
+      <line>to a sequence</line>
+    </text>
+    <text cls="ft04" top="1037" left="162">
+      <line>of continuous representations</line>
+    </text>
+    <text cls="ft04" top="1037" left="451">
+      <line>. Given</line>
+    </text>
+    <text cls="ft04" top="1037" left="514">
+      <line>, the decoder then generates an output</line>
+    </text>
+    <text cls="ft04" top="1054" left="162">
+      <line>sequence</line>
+    </text>
+    <text cls="ft04" top="1054" left="296">
+      <line>of symbols one element at a time. At each step the model is auto-regressive</line>
+    </text>
+    <text cls="ft04" top="1070" left="162">
+      <line>&lt;a href="attention.html#11"&gt;[10], &lt;/a&gt;consuming the previously generated symbols as additional input when generating the next.</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>2</line>
+    </text>
+  </page>
+  <page number="3" width="918.0" height="1188.0">
+    <image src="attention003.png" width="918" height="1188"/>
+    <text cls="ft04" top="608" left="315">
+      <line>Figure 1: The Transformer - model architecture.</line>
+    </text>
+    <text cls="ft04" top="656" left="162">
+      <line>The Transformer follows this overall architecture using stacked self-attention and point-wise, fully</line>
+    </text>
+    <text cls="ft010" top="673" left="162">
+      <line>connected layers for both the encoder and decoder, shown in the left and right halves of Figure &lt;a href="attention.html#3"&gt;1,</line>
+      <line>&lt;/a&gt;respectively.</line>
+    </text>
+    <text cls="ft02" top="726" left="162">
+      <line>3.1</line>
+    </text>
+    <text cls="ft02" top="726" left="196">
+      <line>Encoder and Decoder Stacks</line>
+    </text>
+    <text cls="ft02" top="756" left="162">
+      <line>Encoder:</line>
+    </text>
+    <text cls="ft04" top="756" left="237">
+      <line>The encoder is composed of a stack of</line>
+    </text>
+    <text cls="ft04" top="756" left="532">
+      <line>identical layers. Each layer has two</line>
+    </text>
+    <text cls="ft04" top="772" left="162">
+      <line>sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-</line>
+    </text>
+    <text cls="ft04" top="789" left="161">
+      <line>wise fully connected feed-forward network. We employ a residual connection &lt;a href="attention.html#11"&gt;[11] &lt;/a&gt;around each of</line>
+    </text>
+    <text cls="ft04" top="805" left="162">
+      <line>the two sub-layers, followed by layer normalization &lt;a href="attention.html#10"&gt;[1]. &lt;/a&gt;That is, the output of each sub-layer is</line>
+    </text>
+    <text cls="ft04" top="821" left="351">
+      <line>, where</line>
+    </text>
+    <text cls="ft04" top="821" left="481">
+      <line>is the function implemented by the sub-layer</line>
+    </text>
+    <text cls="ft010" top="838" left="162">
+      <line>itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding</line>
+      <line>layers, produce outputs of dimension</line>
+    </text>
+    <text cls="ft04" top="854" left="464">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="888" left="162">
+      <line>Decoder:</line>
+    </text>
+    <text cls="ft04" top="889" left="234">
+      <line>The decoder is also composed of a stack of</line>
+    </text>
+    <text cls="ft04" top="889" left="533">
+      <line>identical layers. In addition to the two</line>
+    </text>
+    <text cls="ft010" top="905" left="162">
+      <line>sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head</line>
+      <line>attention over the output of the encoder stack. Similar to the encoder, we employ residual connections</line>
+      <line>around each of the sub-layers, followed by layer normalization. We also modify the self-attention</line>
+      <line>sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This</line>
+      <line>masking, combined with fact that the output embeddings are offset by one position, ensures that the</line>
+      <line>predictions for position</line>
+    </text>
+    <text cls="ft04" top="987" left="314">
+      <line>can depend only on the known outputs at positions less than</line>
+    </text>
+    <text cls="ft04" top="987" left="681">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="1023" left="162">
+      <line>3.2</line>
+    </text>
+    <text cls="ft02" top="1023" left="196">
+      <line>Attention</line>
+    </text>
+    <text cls="ft010" top="1054" left="161">
+      <line>An attention function can be described as mapping a query and a set of key-value pairs to an output,</line>
+      <line>where the query, keys, values, and output are all vectors. The output is computed as a weighted sum</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>3</line>
+    </text>
+  </page>
+  <page number="4" width="918.0" height="1188.0">
+    <image src="attention004.png" width="918" height="1188"/>
+    <text cls="ft04" top="108" left="222">
+      <line>Scaled Dot-Product Attention</line>
+    </text>
+    <text cls="ft04" top="108" left="545">
+      <line>Multi-Head Attention</line>
+    </text>
+    <text cls="ft010" top="413" left="162">
+      <line>Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several</line>
+      <line>attention layers running in parallel.</line>
+    </text>
+    <text cls="ft010" top="477" left="162">
+      <line>of the values, where the weight assigned to each value is computed by a compatibility function of the</line>
+      <line>query with the corresponding key.</line>
+    </text>
+    <text cls="ft02" top="528" left="162">
+      <line>3.2.1</line>
+    </text>
+    <text cls="ft02" top="528" left="207">
+      <line>Scaled Dot-Product Attention</line>
+    </text>
+    <text cls="ft04" top="556" left="161">
+      <line>We call our particular attention "Scaled Dot-Product Attention" (Figure &lt;a href="attention.html#4"&gt;2). &lt;/a&gt;The input consists of</line>
+    </text>
+    <text cls="ft04" top="572" left="162">
+      <line>queries and keys of dimension</line>
+    </text>
+    <text cls="ft04" top="572" left="363">
+      <line>, and values of dimension</line>
+    </text>
+    <text cls="ft04" top="572" left="534">
+      <line>. We compute the dot products of the</line>
+    </text>
+    <text cls="ft04" top="589" left="162">
+      <line>query with all keys, divide each by</line>
+    </text>
+    <text cls="ft04" top="589" left="403">
+      <line>, and apply a softmax function to obtain the weights on the</line>
+    </text>
+    <text cls="ft04" top="605" left="162">
+      <line>values.</line>
+    </text>
+    <text cls="ft010" top="630" left="162">
+      <line>In practice, we compute the attention function on a set of queries simultaneously, packed together</line>
+      <line>into a matrix</line>
+    </text>
+    <text cls="ft04" top="646" left="254">
+      <line>. The keys and values are also packed together into matrices</line>
+    </text>
+    <text cls="ft04" top="646" left="635">
+      <line>and</line>
+    </text>
+    <text cls="ft04" top="646" left="673">
+      <line>. We compute</line>
+    </text>
+    <text cls="ft04" top="662" left="162">
+      <line>the matrix of outputs as:</line>
+    </text>
+    <text cls="ft04" top="711" left="740">
+      <line>(1)</line>
+    </text>
+    <text cls="ft04" top="750" left="162">
+      <line>The two most commonly used attention functions are additive attention &lt;a href="attention.html#10"&gt;[2], &lt;/a&gt;and dot-product (multi-</line>
+    </text>
+    <text cls="ft010" top="767" left="162">
+      <line>plicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor</line>
+      <line>of</line>
+    </text>
+    <text cls="ft03" top="784" left="180">
+      <line>√</line>
+    </text>
+    <text cls="ft04" top="783" left="204">
+      <line>. Additive attention computes the compatibility function using a feed-forward network with</line>
+    </text>
+    <text cls="ft010" top="803" left="162">
+      <line>a single hidden layer. While the two are similar in theoretical complexity, dot-product attention is</line>
+      <line>much faster and more space-efficient in practice, since it can be implemented using highly optimized</line>
+      <line>matrix multiplication code.</line>
+    </text>
+    <text cls="ft04" top="860" left="161">
+      <line>While for small values of</line>
+    </text>
+    <text cls="ft04" top="860" left="336">
+      <line>the two mechanisms perform similarly, additive attention outperforms</line>
+    </text>
+    <text cls="ft04" top="877" left="162">
+      <line>dot product attention without scaling for larger values of</line>
+    </text>
+    <text cls="ft04" top="877" left="523">
+      <line>&lt;a href="attention.html#10"&gt;[3]. &lt;/a&gt;We suspect that for large values of</line>
+    </text>
+    <text cls="ft04" top="893" left="177">
+      <line>, the dot products grow large in magnitude, pushing the softmax function into regions where it has</line>
+    </text>
+    <text cls="ft04" top="909" left="162">
+      <line>extremely small gradients</line>
+    </text>
+    <text cls="ft04" top="909" left="326">
+      <line>&lt;a href="attention.html#4"&gt;. &lt;/a&gt;To counteract this effect, we scale the dot products by</line>
+    </text>
+    <text cls="ft03" top="910" left="661">
+      <line>√</line>
+    </text>
+    <text cls="ft04" top="909" left="685">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="947" left="162">
+      <line>3.2.2</line>
+    </text>
+    <text cls="ft02" top="947" left="207">
+      <line>Multi-Head Attention</line>
+    </text>
+    <text cls="ft04" top="975" left="162">
+      <line>Instead of performing a single attention function with</line>
+    </text>
+    <text cls="ft04" top="975" left="525">
+      <line>-dimensional keys, values and queries,</line>
+    </text>
+    <text cls="ft04" top="992" left="161">
+      <line>we found it beneficial to linearly project the queries, keys and values</line>
+    </text>
+    <text cls="ft04" top="992" left="587">
+      <line>times with different, learned</line>
+    </text>
+    <text cls="ft04" top="1008" left="162">
+      <line>linear projections to</line>
+    </text>
+    <text cls="ft04" top="1008" left="301">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="1008" left="327">
+      <line>and</line>
+    </text>
+    <text cls="ft04" top="1008" left="371">
+      <line>dimensions, respectively. On each of these projected versions of</line>
+    </text>
+    <text cls="ft04" top="1025" left="162">
+      <line>queries, keys and values we then perform the attention function in parallel, yielding</line>
+    </text>
+    <text cls="ft04" top="1025" left="678">
+      <line>-dimensional</line>
+    </text>
+    <text cls="ft08" top="1054" left="186">
+      <line>To illustrate why the dot products get large, assume that the components of</line>
+    </text>
+    <text cls="ft08" top="1054" left="595">
+      <line>and</line>
+    </text>
+    <text cls="ft08" top="1054" left="628">
+      <line>are independent random</line>
+    </text>
+    <text cls="ft08" top="1071" left="162">
+      <line>variables with mean</line>
+    </text>
+    <text cls="ft08" top="1071" left="283">
+      <line>and variance</line>
+    </text>
+    <text cls="ft08" top="1071" left="361">
+      <line>. Then their dot product,</line>
+    </text>
+    <text cls="ft08" top="1071" left="597">
+      <line>, has mean</line>
+    </text>
+    <text cls="ft08" top="1071" left="667">
+      <line>and variance</line>
+    </text>
+    <text cls="ft08" top="1071" left="752">
+      <line>.</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>4</line>
+    </text>
+  </page>
+  <page number="5" width="918.0" height="1188.0">
+    <image src="attention005.png" width="918" height="1188"/>
+    <text cls="ft010" top="113" left="162">
+      <line>output values. These are concatenated and once again projected, resulting in the final values, as</line>
+      <line>depicted in Figure &lt;a href="attention.html#4"&gt;2.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="154" left="162">
+      <line>Multi-head attention allows the model to jointly attend to information from different representation</line>
+      <line>subspaces at different positions. With a single attention head, averaging inhibits this.</line>
+    </text>
+    <text cls="ft04" top="248" left="337">
+      <line>where</line>
+    </text>
+    <text cls="ft04" top="310" left="161">
+      <line>Where the projections are parameter matrices</line>
+    </text>
+    <text cls="ft03" top="307" left="510">
+      <line>×</line>
+    </text>
+    <text cls="ft04" top="310" left="533">
+      <line>,</line>
+    </text>
+    <text cls="ft03" top="307" left="622">
+      <line>×</line>
+    </text>
+    <text cls="ft04" top="310" left="645">
+      <line>,</line>
+    </text>
+    <text cls="ft03" top="307" left="733">
+      <line>×</line>
+    </text>
+    <text cls="ft04" top="328" left="162">
+      <line>and</line>
+    </text>
+    <text cls="ft03" top="325" left="262">
+      <line>×</line>
+    </text>
+    <text cls="ft04" top="328" left="298">
+      <line>.</line>
+    </text>
+    <text cls="ft04" top="353" left="162">
+      <line>In this work we employ</line>
+    </text>
+    <text cls="ft04" top="353" left="370">
+      <line>parallel attention layers, or heads. For each of these we use</line>
+    </text>
+    <text cls="ft04" top="369" left="318">
+      <line>. Due to the reduced dimension of each head, the total computational cost</line>
+    </text>
+    <text cls="ft04" top="385" left="162">
+      <line>is similar to that of single-head attention with full dimensionality.</line>
+    </text>
+    <text cls="ft02" top="422" left="162">
+      <line>3.2.3</line>
+    </text>
+    <text cls="ft02" top="422" left="207">
+      <line>Applications of Attention in our Model</line>
+    </text>
+    <text cls="ft04" top="450" left="162">
+      <line>The Transformer uses multi-head attention in three different ways:</line>
+    </text>
+    <text cls="ft04" top="482" left="203">
+      <line>• In "encoder-decoder attention" layers, the queries come from the previous decoder layer,</line>
+    </text>
+    <text cls="ft010" top="498" left="216">
+      <line>and the memory keys and values come from the output of the encoder. This allows every</line>
+      <line>position in the decoder to attend over all positions in the input sequence. This mimics the</line>
+      <line>typical encoder-decoder attention mechanisms in sequence-to-sequence models such as</line>
+      <line>&lt;a href="attention.html#12"&gt;[38, &lt;/a&gt;&lt;a href="attention.html#10"&gt;2, &lt;/a&gt;&lt;a href="attention.html#11"&gt;9].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="571" left="203">
+      <line>• The encoder contains self-attention layers. In a self-attention layer all of the keys, values</line>
+    </text>
+    <text cls="ft010" top="587" left="216">
+      <line>and queries come from the same place, in this case, the output of the previous layer in the</line>
+      <line>encoder. Each position in the encoder can attend to all positions in the previous layer of the</line>
+      <line>encoder.</line>
+    </text>
+    <text cls="ft04" top="644" left="203">
+      <line>• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to</line>
+    </text>
+    <text cls="ft010" top="660" left="216">
+      <line>all positions in the decoder up to and including that position. We need to prevent leftward</line>
+      <line>information flow in the decoder to preserve the auto-regressive property. We implement this</line>
+      <line>inside of scaled dot-product attention by masking out (setting to</line>
+    </text>
+    <text cls="ft04" top="693" left="621">
+      <line>) all values in the input</line>
+    </text>
+    <text cls="ft04" top="709" left="216">
+      <line>of the softmax which correspond to illegal connections. See Figure &lt;a href="attention.html#4"&gt;2.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft02" top="747" left="162">
+      <line>3.3</line>
+    </text>
+    <text cls="ft02" top="747" left="196">
+      <line>Position-wise Feed-Forward Networks</line>
+    </text>
+    <text cls="ft010" top="778" left="162">
+      <line>In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully</line>
+      <line>connected feed-forward network, which is applied to each position separately and identically. This</line>
+      <line>consists of two linear transformations with a ReLU activation in between.</line>
+    </text>
+    <text cls="ft04" top="854" left="740">
+      <line>(2)</line>
+    </text>
+    <text cls="ft04" top="886" left="161">
+      <line>While the linear transformations are the same across different positions, they use different parameters</line>
+    </text>
+    <text cls="ft04" top="903" left="162">
+      <line>from layer to layer. Another way of describing this is as two convolutions with kernel size 1.</line>
+    </text>
+    <text cls="ft04" top="919" left="162">
+      <line>The dimensionality of input and output is</line>
+    </text>
+    <text cls="ft04" top="919" left="509">
+      <line>, and the inner-layer has dimensionality</line>
+    </text>
+    <text cls="ft04" top="936" left="234">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="974" left="162">
+      <line>3.4</line>
+    </text>
+    <text cls="ft02" top="974" left="196">
+      <line>Embeddings and Softmax</line>
+    </text>
+    <text cls="ft010" top="1004" left="162">
+      <line>Similarly to other sequence transduction models, we use learned embeddings to convert the input</line>
+      <line>tokens and output tokens to vectors of dimension</line>
+    </text>
+    <text cls="ft04" top="1021" left="487">
+      <line>. We also use the usual learned linear transfor-</line>
+    </text>
+    <text cls="ft010" top="1037" left="162">
+      <line>mation and softmax function to convert the decoder output to predicted next-token probabilities. In</line>
+      <line>our model, we share the same weight matrix between the two embedding layers and the pre-softmax</line>
+      <line>linear transformation, similar to &lt;a href="attention.html#12"&gt;[30]. &lt;/a&gt;In the embedding layers, we multiply those weights by</line>
+    </text>
+    <text cls="ft04" top="1070" left="755">
+      <line>.</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>5</line>
+    </text>
+  </page>
+  <page number="6" width="918.0" height="1188.0">
+    <image src="attention006.png" width="918" height="1188"/>
+    <text cls="ft04" top="108" left="162">
+      <line>Table 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations</line>
+    </text>
+    <text cls="ft04" top="124" left="162">
+      <line>for different layer types.</line>
+    </text>
+    <text cls="ft04" top="124" left="325">
+      <line>is the sequence length,</line>
+    </text>
+    <text cls="ft04" top="124" left="476">
+      <line>is the representation dimension,</line>
+    </text>
+    <text cls="ft04" top="124" left="683">
+      <line>is the kernel</line>
+    </text>
+    <text cls="ft04" top="141" left="162">
+      <line>size of convolutions and</line>
+    </text>
+    <text cls="ft04" top="141" left="321">
+      <line>the size of the neighborhood in restricted self-attention.</line>
+    </text>
+    <text cls="ft04" top="176" left="187">
+      <line>Layer Type</line>
+    </text>
+    <text cls="ft04" top="176" left="360">
+      <line>Complexity per Layer</line>
+    </text>
+    <text cls="ft04" top="176" left="510">
+      <line>Sequential</line>
+    </text>
+    <text cls="ft04" top="176" left="593">
+      <line>Maximum Path Length</line>
+    </text>
+    <text cls="ft04" top="193" left="509">
+      <line>Operations</line>
+    </text>
+    <text cls="ft04" top="211" left="187">
+      <line>Self-Attention</line>
+    </text>
+    <text cls="ft04" top="229" left="187">
+      <line>Recurrent</line>
+    </text>
+    <text cls="ft04" top="246" left="187">
+      <line>Convolutional</line>
+    </text>
+    <text cls="ft04" top="262" left="187">
+      <line>Self-Attention (restricted)</line>
+    </text>
+    <text cls="ft02" top="322" left="162">
+      <line>3.5</line>
+    </text>
+    <text cls="ft02" top="322" left="196">
+      <line>Positional Encoding</line>
+    </text>
+    <text cls="ft010" top="352" left="162">
+      <line>Since our model contains no recurrence and no convolution, in order for the model to make use of the</line>
+      <line>order of the sequence, we must inject some information about the relative or absolute position of the</line>
+      <line>tokens in the sequence. To this end, we add "positional encodings" to the input embeddings at the</line>
+      <line>bottoms of the encoder and decoder stacks. The positional encodings have the same dimension</line>
+    </text>
+    <text cls="ft010" top="417" left="162">
+      <line>as the embeddings, so that the two can be summed. There are many choices of positional encodings,</line>
+      <line>learned and fixed &lt;a href="attention.html#11"&gt;[9].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="458" left="162">
+      <line>In this work, we use sine and cosine functions of different frequencies:</line>
+    </text>
+    <text cls="ft04" top="567" left="161">
+      <line>where</line>
+    </text>
+    <text cls="ft04" top="567" left="227">
+      <line>is the position and</line>
+    </text>
+    <text cls="ft04" top="567" left="349">
+      <line>is the dimension. That is, each dimension of the positional encoding</line>
+    </text>
+    <text cls="ft04" top="584" left="162">
+      <line>corresponds to a sinusoid. The wavelengths form a geometric progression from</line>
+    </text>
+    <text cls="ft04" top="584" left="650">
+      <line>to</line>
+    </text>
+    <text cls="ft04" top="584" left="729">
+      <line>. We</line>
+    </text>
+    <text cls="ft010" top="600" left="162">
+      <line>chose this function because we hypothesized it would allow the model to easily learn to attend by</line>
+      <line>relative positions, since for any fixed offset</line>
+    </text>
+    <text cls="ft04" top="617" left="437">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="617" left="505">
+      <line>can be represented as a linear function of</line>
+    </text>
+    <text cls="ft04" top="633" left="203">
+      <line>.</line>
+    </text>
+    <text cls="ft010" top="658" left="161">
+      <line>We also experimented with using learned positional embeddings &lt;a href="attention.html#11"&gt;[9] &lt;/a&gt;instead, and found that the two</line>
+      <line>versions produced nearly identical results (see Table &lt;a href="attention.html#9"&gt;3 &lt;/a&gt;row (E)). We chose the sinusoidal version</line>
+    </text>
+    <text cls="ft010" top="690" left="162">
+      <line>because it may allow the model to extrapolate to sequence lengths longer than the ones encountered</line>
+      <line>during training.</line>
+    </text>
+    <text cls="ft06" top="747" left="162">
+      <line>4</line>
+    </text>
+    <text cls="ft06" top="747" left="189">
+      <line>Why Self-Attention</line>
+    </text>
+    <text cls="ft010" top="783" left="162">
+      <line>In this section we compare various aspects of self-attention layers to the recurrent and convolu-</line>
+      <line>tional layers commonly used for mapping one variable-length sequence of symbol representations</line>
+    </text>
+    <text cls="ft04" top="816" left="235">
+      <line>to another sequence of equal length</line>
+    </text>
+    <text cls="ft04" top="816" left="528">
+      <line>, with</line>
+    </text>
+    <text cls="ft04" top="816" left="643">
+      <line>, such as a hidden</line>
+    </text>
+    <text cls="ft010" top="832" left="162">
+      <line>layer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we</line>
+      <line>consider three desiderata.</line>
+    </text>
+    <text cls="ft010" top="873" left="162">
+      <line>One is the total computational complexity per layer. Another is the amount of computation that can</line>
+      <line>be parallelized, as measured by the minimum number of sequential operations required.</line>
+    </text>
+    <text cls="ft04" top="914" left="162">
+      <line>The third is the path length between long-range dependencies in the network. Learning long-range</line>
+    </text>
+    <text cls="ft010" top="931" left="162">
+      <line>dependencies is a key challenge in many sequence transduction tasks. One key factor affecting the</line>
+      <line>ability to learn such dependencies is the length of the paths forward and backward signals have to</line>
+      <line>traverse in the network. The shorter these paths between any combination of positions in the input</line>
+      <line>and output sequences, the easier it is to learn long-range dependencies &lt;a href="attention.html#11"&gt;[12]. &lt;/a&gt;Hence we also compare</line>
+      <line>the maximum path length between any two input and output positions in networks composed of the</line>
+      <line>different layer types.</line>
+    </text>
+    <text cls="ft04" top="1037" left="161">
+      <line>As noted in Table &lt;a href="attention.html#6"&gt;1, &lt;/a&gt;a self-attention layer connects all positions with a constant number of sequentially</line>
+    </text>
+    <text cls="ft04" top="1054" left="162">
+      <line>executed operations, whereas a recurrent layer requires</line>
+    </text>
+    <text cls="ft04" top="1054" left="545">
+      <line>sequential operations. In terms of</line>
+    </text>
+    <text cls="ft04" top="1070" left="162">
+      <line>computational complexity, self-attention layers are faster than recurrent layers when the sequence</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>6</line>
+    </text>
+  </page>
+  <page number="7" width="918.0" height="1188.0">
+    <image src="attention007.png" width="918" height="1188"/>
+    <text cls="ft04" top="113" left="162">
+      <line>length</line>
+    </text>
+    <text cls="ft04" top="113" left="219">
+      <line>is smaller than the representation dimensionality</line>
+    </text>
+    <text cls="ft04" top="113" left="535">
+      <line>, which is most often the case with</line>
+    </text>
+    <text cls="ft010" top="129" left="162">
+      <line>sentence representations used by state-of-the-art models in machine translations, such as word-piece</line>
+      <line>&lt;a href="attention.html#12"&gt;[38] &lt;/a&gt;and byte-pair &lt;a href="attention.html#12"&gt;[31] &lt;/a&gt;representations. To improve computational performance for tasks involving</line>
+      <line>very long sequences, self-attention could be restricted to considering only a neighborhood of size</line>
+    </text>
+    <text cls="ft04" top="162" left="745">
+      <line>in</line>
+    </text>
+    <text cls="ft010" top="178" left="162">
+      <line>the input sequence centered around the respective output position. This would increase the maximum</line>
+      <line>path length to</line>
+    </text>
+    <text cls="ft04" top="195" left="295">
+      <line>. We plan to investigate this approach further in future work.</line>
+    </text>
+    <text cls="ft04" top="219" left="161">
+      <line>A single convolutional layer with kernel width</line>
+    </text>
+    <text cls="ft04" top="219" left="485">
+      <line>does not connect all pairs of input and output</line>
+    </text>
+    <text cls="ft04" top="236" left="162">
+      <line>positions. Doing so requires a stack of</line>
+    </text>
+    <text cls="ft04" top="236" left="442">
+      <line>convolutional layers in the case of contiguous kernels,</line>
+    </text>
+    <text cls="ft04" top="252" left="162">
+      <line>or</line>
+    </text>
+    <text cls="ft04" top="252" left="254">
+      <line>in the case of dilated convolutions &lt;a href="attention.html#11"&gt;[18], &lt;/a&gt;increasing the length of the longest paths</line>
+    </text>
+    <text cls="ft010" top="268" left="162">
+      <line>between any two positions in the network. Convolutional layers are generally more expensive than</line>
+      <line>recurrent layers, by a factor of</line>
+    </text>
+    <text cls="ft04" top="285" left="364">
+      <line>. Separable convolutions &lt;a href="attention.html#11"&gt;[6], &lt;/a&gt;however, decrease the complexity</line>
+    </text>
+    <text cls="ft04" top="301" left="162">
+      <line>considerably, to</line>
+    </text>
+    <text cls="ft04" top="301" left="390">
+      <line>. Even with</line>
+    </text>
+    <text cls="ft04" top="301" left="507">
+      <line>, however, the complexity of a separable</line>
+    </text>
+    <text cls="ft010" top="317" left="162">
+      <line>convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer,</line>
+      <line>the approach we take in our model.</line>
+    </text>
+    <text cls="ft04" top="358" left="161">
+      <line>As side benefit, self-attention could yield more interpretable models. We inspect attention distributions</line>
+    </text>
+    <text cls="ft010" top="375" left="162">
+      <line>from our models and present and discuss examples in the appendix. Not only do individual attention</line>
+      <line>heads clearly learn to perform different tasks, many appear to exhibit behavior related to the syntactic</line>
+      <line>and semantic structure of the sentences.</line>
+    </text>
+    <text cls="ft06" top="451" left="162">
+      <line>5</line>
+    </text>
+    <text cls="ft06" top="451" left="189">
+      <line>Training</line>
+    </text>
+    <text cls="ft04" top="490" left="162">
+      <line>This section describes the training regime for our models.</line>
+    </text>
+    <text cls="ft02" top="530" left="162">
+      <line>5.1</line>
+    </text>
+    <text cls="ft02" top="530" left="196">
+      <line>Training Data and Batching</line>
+    </text>
+    <text cls="ft04" top="562" left="161">
+      <line>We trained on the standard WMT 2014 English-German dataset consisting of about 4.5 million</line>
+    </text>
+    <text cls="ft010" top="578" left="162">
+      <line>sentence pairs. Sentences were encoded using byte-pair encoding &lt;a href="attention.html#10"&gt;[3], &lt;/a&gt;which has a shared source-</line>
+      <line>target vocabulary of about 37000 tokens. For English-French, we used the significantly larger WMT</line>
+      <line>2014 English-French dataset consisting of 36M sentences and split tokens into a 32000 word-piece</line>
+      <line>vocabulary &lt;a href="attention.html#12"&gt;[38]. &lt;/a&gt;Sentence pairs were batched together by approximate sequence length. Each training</line>
+      <line>batch contained a set of sentence pairs containing approximately 25000 source tokens and 25000</line>
+      <line>target tokens.</line>
+    </text>
+    <text cls="ft02" top="700" left="162">
+      <line>5.2</line>
+    </text>
+    <text cls="ft02" top="700" left="196">
+      <line>Hardware and Schedule</line>
+    </text>
+    <text cls="ft04" top="731" left="161">
+      <line>We trained our models on one machine with 8 NVIDIA P100 GPUs. For our base models using</line>
+    </text>
+    <text cls="ft010" top="748" left="162">
+      <line>the hyperparameters described throughout the paper, each training step took about 0.4 seconds. We</line>
+      <line>trained the base models for a total of 100,000 steps or 12 hours. For our big models,(described on the</line>
+      <line>bottom line of table &lt;a href="attention.html#9"&gt;3), &lt;/a&gt;step time was 1.0 seconds. The big models were trained for 300,000 steps</line>
+    </text>
+    <text cls="ft04" top="797" left="162">
+      <line>(3.5 days).</line>
+    </text>
+    <text cls="ft02" top="837" left="162">
+      <line>5.3</line>
+    </text>
+    <text cls="ft02" top="837" left="196">
+      <line>Optimizer</line>
+    </text>
+    <text cls="ft04" top="868" left="161">
+      <line>We used the Adam optimizer &lt;a href="attention.html#11"&gt;[20] &lt;/a&gt;with</line>
+    </text>
+    <text cls="ft04" top="868" left="455">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="868" left="528">
+      <line>and</line>
+    </text>
+    <text cls="ft03" top="865" left="595">
+      <line>−</line>
+    </text>
+    <text cls="ft04" top="868" left="611">
+      <line>. We varied the learning</line>
+    </text>
+    <text cls="ft04" top="885" left="162">
+      <line>rate over the course of training, according to the formula:</line>
+    </text>
+    <text cls="ft03" top="926" left="304">
+      <line>−</line>
+    </text>
+    <text cls="ft04" top="930" left="399">
+      <line>_</line>
+    </text>
+    <text cls="ft03" top="927" left="438">
+      <line>−</line>
+    </text>
+    <text cls="ft04" top="930" left="497">
+      <line>_</line>
+    </text>
+    <text cls="ft04" top="930" left="601">
+      <line>_</line>
+    </text>
+    <text cls="ft03" top="927" left="642">
+      <line>−</line>
+    </text>
+    <text cls="ft04" top="930" left="740">
+      <line>(3)</line>
+    </text>
+    <text cls="ft04" top="966" left="162">
+      <line>This corresponds to increasing the learning rate linearly for the first</line>
+    </text>
+    <text cls="ft04" top="966" left="628">
+      <line>_</line>
+    </text>
+    <text cls="ft04" top="966" left="673">
+      <line>training steps,</line>
+    </text>
+    <text cls="ft04" top="982" left="162">
+      <line>and decreasing it thereafter proportionally to the inverse square root of the step number. We used</line>
+    </text>
+    <text cls="ft04" top="998" left="217">
+      <line>_</line>
+    </text>
+    <text cls="ft04" top="998" left="309">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="1038" left="162">
+      <line>5.4</line>
+    </text>
+    <text cls="ft02" top="1038" left="196">
+      <line>Regularization</line>
+    </text>
+    <text cls="ft04" top="1070" left="161">
+      <line>We employ three types of regularization during training:</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>7</line>
+    </text>
+  </page>
+  <page number="8" width="918.0" height="1188.0">
+    <image src="attention008.png" width="918" height="1188"/>
+    <text cls="ft04" top="108" left="162">
+      <line>Table 2: The Transformer achieves better BLEU scores than previous state-of-the-art models on the</line>
+    </text>
+    <text cls="ft04" top="124" left="162">
+      <line>English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.</line>
+    </text>
+    <text cls="ft04" top="161" left="205">
+      <line>Model</line>
+    </text>
+    <text cls="ft04" top="148" left="467">
+      <line>BLEU</line>
+    </text>
+    <text cls="ft04" top="148" left="575">
+      <line>Training Cost (FLOPs)</line>
+    </text>
+    <text cls="ft04" top="172" left="433">
+      <line>EN-DE</line>
+    </text>
+    <text cls="ft04" top="172" left="496">
+      <line>EN-FR</line>
+    </text>
+    <text cls="ft04" top="172" left="581">
+      <line>EN-DE</line>
+    </text>
+    <text cls="ft04" top="172" left="660">
+      <line>EN-FR</line>
+    </text>
+    <text cls="ft04" top="189" left="205">
+      <line>ByteNet &lt;a href="attention.html#11"&gt;[18]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="189" left="439">
+      <line>23.75</line>
+    </text>
+    <text cls="ft04" top="206" left="205">
+      <line>Deep-Att + PosUnk &lt;a href="attention.html#12"&gt;[39]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="206" left="504">
+      <line>39.2</line>
+    </text>
+    <text cls="ft04" top="223" left="205">
+      <line>GNMT + RL &lt;a href="attention.html#12"&gt;[38]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="223" left="442">
+      <line>24.6</line>
+    </text>
+    <text cls="ft04" top="223" left="501">
+      <line>39.92</line>
+    </text>
+    <text cls="ft04" top="240" left="205">
+      <line>ConvS2S &lt;a href="attention.html#11"&gt;[9]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="240" left="439">
+      <line>25.16</line>
+    </text>
+    <text cls="ft04" top="240" left="501">
+      <line>40.46</line>
+    </text>
+    <text cls="ft04" top="257" left="205">
+      <line>MoE &lt;a href="attention.html#12"&gt;[32]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="257" left="439">
+      <line>26.03</line>
+    </text>
+    <text cls="ft04" top="257" left="501">
+      <line>40.56</line>
+    </text>
+    <text cls="ft04" top="276" left="205">
+      <line>Deep-Att + PosUnk Ensemble &lt;a href="attention.html#12"&gt;[39]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="276" left="504">
+      <line>40.4</line>
+    </text>
+    <text cls="ft04" top="293" left="205">
+      <line>GNMT + RL Ensemble &lt;a href="attention.html#12"&gt;[38]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="293" left="439">
+      <line>26.30</line>
+    </text>
+    <text cls="ft04" top="293" left="501">
+      <line>41.16</line>
+    </text>
+    <text cls="ft04" top="310" left="205">
+      <line>ConvS2S Ensemble &lt;a href="attention.html#11"&gt;[9]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="310" left="439">
+      <line>26.36</line>
+    </text>
+    <text cls="ft02" top="310" left="501">
+      <line>41.29</line>
+    </text>
+    <text cls="ft04" top="330" left="205">
+      <line>Transformer (base model)</line>
+    </text>
+    <text cls="ft04" top="330" left="442">
+      <line>27.3</line>
+    </text>
+    <text cls="ft04" top="330" left="504">
+      <line>38.1</line>
+    </text>
+    <text cls="ft04" top="347" left="205">
+      <line>Transformer (big)</line>
+    </text>
+    <text cls="ft02" top="347" left="442">
+      <line>28.4</line>
+    </text>
+    <text cls="ft02" top="347" left="504">
+      <line>41.8</line>
+    </text>
+    <text cls="ft02" top="411" left="162">
+      <line>Residual Dropout</line>
+    </text>
+    <text cls="ft04" top="411" left="289">
+      <line>We apply dropout &lt;a href="attention.html#12"&gt;[33] &lt;/a&gt;to the output of each sub-layer, before it is added to the</line>
+    </text>
+    <text cls="ft010" top="428" left="162">
+      <line>sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the</line>
+      <line>positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of</line>
+    </text>
+    <text cls="ft04" top="460" left="236">
+      <line>.</line>
+    </text>
+    <text cls="ft02" top="498" left="162">
+      <line>Label Smoothing</line>
+    </text>
+    <text cls="ft04" top="498" left="289">
+      <line>During training, we employed label smoothing of value</line>
+    </text>
+    <text cls="ft04" top="498" left="694">
+      <line>&lt;a href="attention.html#12"&gt;[36]. &lt;/a&gt;This</line>
+    </text>
+    <text cls="ft04" top="515" left="162">
+      <line>hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.</line>
+    </text>
+    <text cls="ft06" top="558" left="162">
+      <line>6</line>
+    </text>
+    <text cls="ft06" top="558" left="189">
+      <line>Results</line>
+    </text>
+    <text cls="ft02" top="597" left="162">
+      <line>6.1</line>
+    </text>
+    <text cls="ft02" top="597" left="196">
+      <line>Machine Translation</line>
+    </text>
+    <text cls="ft010" top="629" left="162">
+      <line>On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big)</line>
+      <line>in Table &lt;a href="attention.html#8"&gt;2) &lt;/a&gt;outperforms the best previously reported models (including ensembles) by more than</line>
+    </text>
+    <text cls="ft04" top="661" left="162">
+      <line>BLEU, establishing a new state-of-the-art BLEU score of</line>
+    </text>
+    <text cls="ft04" top="661" left="541">
+      <line>. The configuration of this model is</line>
+    </text>
+    <text cls="ft04" top="678" left="162">
+      <line>listed in the bottom line of Table &lt;a href="attention.html#9"&gt;3. &lt;/a&gt;Training took</line>
+    </text>
+    <text cls="ft04" top="678" left="488">
+      <line>days on</line>
+    </text>
+    <text cls="ft04" top="678" left="549">
+      <line>P100 GPUs. Even our base model</line>
+    </text>
+    <text cls="ft010" top="694" left="162">
+      <line>surpasses all previously published models and ensembles, at a fraction of the training cost of any of</line>
+      <line>the competitive models.</line>
+    </text>
+    <text cls="ft04" top="735" left="162">
+      <line>On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of</line>
+    </text>
+    <text cls="ft04" top="735" left="754">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="751" left="162">
+      <line>outperforming all of the previously published single models, at less than</line>
+    </text>
+    <text cls="ft04" top="751" left="622">
+      <line>the training cost of the</line>
+    </text>
+    <text cls="ft010" top="768" left="162">
+      <line>previous state-of-the-art model. The Transformer (big) model trained for English-to-French used</line>
+      <line>dropout rate</line>
+    </text>
+    <text cls="ft04" top="784" left="312">
+      <line>, instead of</line>
+    </text>
+    <text cls="ft04" top="784" left="401">
+      <line>.</line>
+    </text>
+    <text cls="ft04" top="809" left="162">
+      <line>For the base models, we used a single model obtained by averaging the last 5 checkpoints, which</line>
+    </text>
+    <text cls="ft04" top="825" left="161">
+      <line>were written at 10-minute intervals. For the big models, we averaged the last 20 checkpoints. We</line>
+    </text>
+    <text cls="ft04" top="841" left="162">
+      <line>used beam search with a beam size of</line>
+    </text>
+    <text cls="ft04" top="841" left="409">
+      <line>and length penalty</line>
+    </text>
+    <text cls="ft04" top="841" left="580">
+      <line>&lt;a href="attention.html#12"&gt;[38]. &lt;/a&gt;These hyperparameters</line>
+    </text>
+    <text cls="ft04" top="858" left="161">
+      <line>were chosen after experimentation on the development set. We set the maximum output length during</line>
+    </text>
+    <text cls="ft04" top="874" left="162">
+      <line>inference to input length +</line>
+    </text>
+    <text cls="ft04" top="874" left="339">
+      <line>, but terminate early when possible &lt;a href="attention.html#12"&gt;[38].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="899" left="162">
+      <line>Table &lt;a href="attention.html#8"&gt;2 &lt;/a&gt;summarizes our results and compares our translation quality and training costs to other model</line>
+    </text>
+    <text cls="ft010" top="915" left="162">
+      <line>architectures from the literature. We estimate the number of floating point operations used to train a</line>
+      <line>model by multiplying the training time, the number of GPUs used, and an estimate of the sustained</line>
+      <line>single-precision floating-point capacity of each GPU</line>
+    </text>
+    <text cls="ft04" top="948" left="487">
+      <line>&lt;a href="attention.html#8"&gt;.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft02" top="988" left="162">
+      <line>6.2</line>
+    </text>
+    <text cls="ft02" top="988" left="196">
+      <line>Model Variations</line>
+    </text>
+    <text cls="ft04" top="1019" left="162">
+      <line>To evaluate the importance of different components of the Transformer, we varied our base model</line>
+    </text>
+    <text cls="ft04" top="1035" left="162">
+      <line>in different ways, measuring the change in performance on English-to-German translation on the</line>
+    </text>
+    <text cls="ft08" top="1071" left="186">
+      <line>We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively.</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>8</line>
+    </text>
+  </page>
+  <page number="9" width="918.0" height="1188.0">
+    <image src="attention009.png" width="918" height="1188"/>
+    <text cls="ft04" top="108" left="162">
+      <line>Table 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base</line>
+    </text>
+    <text cls="ft010" top="124" left="162">
+      <line>model. All metrics are on the English-to-German translation development set, newstest2013. Listed</line>
+      <line>perplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to</line>
+      <line>per-word perplexities.</line>
+    </text>
+    <text cls="ft04" top="198" left="557">
+      <line>train</line>
+    </text>
+    <text cls="ft04" top="198" left="608">
+      <line>PPL</line>
+    </text>
+    <text cls="ft04" top="198" left="654">
+      <line>BLEU</line>
+    </text>
+    <text cls="ft04" top="198" left="711">
+      <line>params</line>
+    </text>
+    <text cls="ft04" top="215" left="555">
+      <line>steps</line>
+    </text>
+    <text cls="ft04" top="215" left="605">
+      <line>(dev)</line>
+    </text>
+    <text cls="ft04" top="215" left="658">
+      <line>(dev)</line>
+    </text>
+    <text cls="ft04" top="234" left="175">
+      <line>base</line>
+    </text>
+    <text cls="ft04" top="234" left="222">
+      <line>6</line>
+    </text>
+    <text cls="ft04" top="234" left="257">
+      <line>512</line>
+    </text>
+    <text cls="ft04" top="234" left="303">
+      <line>2048</line>
+    </text>
+    <text cls="ft04" top="234" left="355">
+      <line>8</line>
+    </text>
+    <text cls="ft04" top="234" left="388">
+      <line>64</line>
+    </text>
+    <text cls="ft04" top="234" left="428">
+      <line>64</line>
+    </text>
+    <text cls="ft04" top="234" left="473">
+      <line>0.1</line>
+    </text>
+    <text cls="ft04" top="234" left="517">
+      <line>0.1</line>
+    </text>
+    <text cls="ft04" top="234" left="554">
+      <line>100K</line>
+    </text>
+    <text cls="ft04" top="234" left="607">
+      <line>4.92</line>
+    </text>
+    <text cls="ft04" top="234" left="660">
+      <line>25.8</line>
+    </text>
+    <text cls="ft04" top="234" left="725">
+      <line>65</line>
+    </text>
+    <text cls="ft04" top="278" left="178">
+      <line>(A)</line>
+    </text>
+    <text cls="ft04" top="253" left="355">
+      <line>1</line>
+    </text>
+    <text cls="ft04" top="253" left="384">
+      <line>512</line>
+    </text>
+    <text cls="ft04" top="253" left="424">
+      <line>512</line>
+    </text>
+    <text cls="ft04" top="253" left="607">
+      <line>5.29</line>
+    </text>
+    <text cls="ft04" top="253" left="660">
+      <line>24.9</line>
+    </text>
+    <text cls="ft04" top="270" left="355">
+      <line>4</line>
+    </text>
+    <text cls="ft04" top="270" left="384">
+      <line>128</line>
+    </text>
+    <text cls="ft04" top="270" left="424">
+      <line>128</line>
+    </text>
+    <text cls="ft04" top="270" left="607">
+      <line>5.00</line>
+    </text>
+    <text cls="ft04" top="270" left="660">
+      <line>25.5</line>
+    </text>
+    <text cls="ft04" top="286" left="351">
+      <line>16</line>
+    </text>
+    <text cls="ft04" top="286" left="388">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="286" left="428">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="286" left="607">
+      <line>4.91</line>
+    </text>
+    <text cls="ft04" top="286" left="660">
+      <line>25.8</line>
+    </text>
+    <text cls="ft04" top="303" left="351">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="303" left="388">
+      <line>16</line>
+    </text>
+    <text cls="ft04" top="303" left="428">
+      <line>16</line>
+    </text>
+    <text cls="ft04" top="303" left="607">
+      <line>5.01</line>
+    </text>
+    <text cls="ft04" top="303" left="660">
+      <line>25.4</line>
+    </text>
+    <text cls="ft04" top="330" left="178">
+      <line>(B)</line>
+    </text>
+    <text cls="ft04" top="321" left="388">
+      <line>16</line>
+    </text>
+    <text cls="ft04" top="321" left="607">
+      <line>5.16</line>
+    </text>
+    <text cls="ft04" top="321" left="660">
+      <line>25.1</line>
+    </text>
+    <text cls="ft04" top="321" left="725">
+      <line>58</line>
+    </text>
+    <text cls="ft04" top="338" left="388">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="338" left="607">
+      <line>5.01</line>
+    </text>
+    <text cls="ft04" top="338" left="660">
+      <line>25.4</line>
+    </text>
+    <text cls="ft04" top="338" left="725">
+      <line>60</line>
+    </text>
+    <text cls="ft04" top="406" left="178">
+      <line>(C)</line>
+    </text>
+    <text cls="ft04" top="357" left="222">
+      <line>2</line>
+    </text>
+    <text cls="ft04" top="357" left="607">
+      <line>6.11</line>
+    </text>
+    <text cls="ft04" top="357" left="660">
+      <line>23.7</line>
+    </text>
+    <text cls="ft04" top="357" left="725">
+      <line>36</line>
+    </text>
+    <text cls="ft04" top="373" left="222">
+      <line>4</line>
+    </text>
+    <text cls="ft04" top="373" left="607">
+      <line>5.19</line>
+    </text>
+    <text cls="ft04" top="373" left="660">
+      <line>25.3</line>
+    </text>
+    <text cls="ft04" top="373" left="725">
+      <line>50</line>
+    </text>
+    <text cls="ft04" top="390" left="222">
+      <line>8</line>
+    </text>
+    <text cls="ft04" top="390" left="607">
+      <line>4.88</line>
+    </text>
+    <text cls="ft04" top="390" left="660">
+      <line>25.5</line>
+    </text>
+    <text cls="ft04" top="390" left="725">
+      <line>80</line>
+    </text>
+    <text cls="ft04" top="406" left="257">
+      <line>256</line>
+    </text>
+    <text cls="ft04" top="406" left="388">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="406" left="428">
+      <line>32</line>
+    </text>
+    <text cls="ft04" top="406" left="607">
+      <line>5.75</line>
+    </text>
+    <text cls="ft04" top="406" left="660">
+      <line>24.5</line>
+    </text>
+    <text cls="ft04" top="406" left="725">
+      <line>28</line>
+    </text>
+    <text cls="ft04" top="422" left="253">
+      <line>1024</line>
+    </text>
+    <text cls="ft04" top="422" left="384">
+      <line>128</line>
+    </text>
+    <text cls="ft04" top="422" left="424">
+      <line>128</line>
+    </text>
+    <text cls="ft04" top="422" left="607">
+      <line>4.66</line>
+    </text>
+    <text cls="ft04" top="422" left="660">
+      <line>26.0</line>
+    </text>
+    <text cls="ft04" top="422" left="721">
+      <line>168</line>
+    </text>
+    <text cls="ft04" top="439" left="303">
+      <line>1024</line>
+    </text>
+    <text cls="ft04" top="439" left="607">
+      <line>5.12</line>
+    </text>
+    <text cls="ft04" top="439" left="660">
+      <line>25.4</line>
+    </text>
+    <text cls="ft04" top="439" left="725">
+      <line>53</line>
+    </text>
+    <text cls="ft04" top="455" left="303">
+      <line>4096</line>
+    </text>
+    <text cls="ft04" top="455" left="607">
+      <line>4.75</line>
+    </text>
+    <text cls="ft04" top="455" left="660">
+      <line>26.2</line>
+    </text>
+    <text cls="ft04" top="455" left="725">
+      <line>90</line>
+    </text>
+    <text cls="ft04" top="498" left="178">
+      <line>(D)</line>
+    </text>
+    <text cls="ft04" top="474" left="473">
+      <line>0.0</line>
+    </text>
+    <text cls="ft04" top="474" left="607">
+      <line>5.77</line>
+    </text>
+    <text cls="ft04" top="474" left="660">
+      <line>24.6</line>
+    </text>
+    <text cls="ft04" top="490" left="473">
+      <line>0.2</line>
+    </text>
+    <text cls="ft04" top="490" left="607">
+      <line>4.95</line>
+    </text>
+    <text cls="ft04" top="490" left="660">
+      <line>25.5</line>
+    </text>
+    <text cls="ft04" top="507" left="517">
+      <line>0.0</line>
+    </text>
+    <text cls="ft04" top="507" left="607">
+      <line>4.67</line>
+    </text>
+    <text cls="ft04" top="507" left="660">
+      <line>25.3</line>
+    </text>
+    <text cls="ft04" top="523" left="517">
+      <line>0.2</line>
+    </text>
+    <text cls="ft04" top="523" left="607">
+      <line>5.47</line>
+    </text>
+    <text cls="ft04" top="523" left="660">
+      <line>25.7</line>
+    </text>
+    <text cls="ft04" top="542" left="178">
+      <line>(E)</line>
+    </text>
+    <text cls="ft04" top="542" left="268">
+      <line>positional embedding instead of sinusoids</line>
+    </text>
+    <text cls="ft04" top="542" left="607">
+      <line>4.92</line>
+    </text>
+    <text cls="ft04" top="542" left="660">
+      <line>25.7</line>
+    </text>
+    <text cls="ft04" top="561" left="178">
+      <line>big</line>
+    </text>
+    <text cls="ft04" top="561" left="222">
+      <line>6</line>
+    </text>
+    <text cls="ft04" top="561" left="253">
+      <line>1024</line>
+    </text>
+    <text cls="ft04" top="561" left="303">
+      <line>4096</line>
+    </text>
+    <text cls="ft04" top="561" left="351">
+      <line>16</line>
+    </text>
+    <text cls="ft04" top="561" left="473">
+      <line>0.3</line>
+    </text>
+    <text cls="ft04" top="561" left="554">
+      <line>300K</line>
+    </text>
+    <text cls="ft02" top="561" left="607">
+      <line>4.33</line>
+    </text>
+    <text cls="ft02" top="561" left="660">
+      <line>26.4</line>
+    </text>
+    <text cls="ft04" top="561" left="721">
+      <line>213</line>
+    </text>
+    <text cls="ft010" top="622" left="162">
+      <line>development set, newstest2013. We used beam search as described in the previous section, but no</line>
+      <line>checkpoint averaging. We present these results in Table &lt;a href="attention.html#9"&gt;3.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="663" left="162">
+      <line>In Table &lt;a href="attention.html#9"&gt;3 &lt;/a&gt;rows (A), we vary the number of attention heads and the attention key and value dimensions,</line>
+      <line>keeping the amount of computation constant, as described in Section &lt;a href="attention.html#4"&gt;3.2.2. &lt;/a&gt;While single-head</line>
+      <line>attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.</line>
+    </text>
+    <text cls="ft04" top="720" left="162">
+      <line>In Table &lt;a href="attention.html#9"&gt;3 &lt;/a&gt;rows (B), we observe that reducing the attention key size</line>
+    </text>
+    <text cls="ft04" top="720" left="601">
+      <line>hurts model quality. This</line>
+    </text>
+    <text cls="ft010" top="736" left="162">
+      <line>suggests that determining compatibility is not easy and that a more sophisticated compatibility</line>
+      <line>function than dot product may be beneficial. We further observe in rows (C) and (D) that, as expected,</line>
+      <line>bigger models are better, and dropout is very helpful in avoiding over-fitting. In row (E) we replace our</line>
+      <line>sinusoidal positional encoding with learned positional embeddings &lt;a href="attention.html#11"&gt;[9], &lt;/a&gt;and observe nearly identical</line>
+      <line>results to the base model.</line>
+    </text>
+    <text cls="ft02" top="842" left="162">
+      <line>6.3</line>
+    </text>
+    <text cls="ft02" top="842" left="196">
+      <line>English Constituency Parsing</line>
+    </text>
+    <text cls="ft04" top="873" left="162">
+      <line>To evaluate if the Transformer can generalize to other tasks we performed experiments on English</line>
+    </text>
+    <text cls="ft010" top="890" left="162">
+      <line>constituency parsing. This task presents specific challenges: the output is subject to strong structural</line>
+      <line>constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence</line>
+      <line>models have not been able to attain state-of-the-art results in small-data regimes &lt;a href="attention.html#12"&gt;[37].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="947" left="161">
+      <line>We trained a 4-layer transformer with</line>
+    </text>
+    <text cls="ft04" top="947" left="480">
+      <line>on the Wall Street Journal (WSJ) portion of the</line>
+    </text>
+    <text cls="ft010" top="963" left="162">
+      <line>Penn Treebank &lt;a href="attention.html#12"&gt;[25], &lt;/a&gt;about 40K training sentences. We also trained it in a semi-supervised setting,</line>
+      <line>using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences</line>
+      <line>&lt;a href="attention.html#12"&gt;[37]. &lt;/a&gt;We used a vocabulary of 16K tokens for the WSJ only setting and a vocabulary of 32K tokens</line>
+      <line>for the semi-supervised setting.</line>
+    </text>
+    <text cls="ft010" top="1037" left="161">
+      <line>We performed only a small number of experiments to select the dropout, both attention and residual</line>
+      <line>(section &lt;a href="attention.html#7"&gt;5.4), &lt;/a&gt;learning rates and beam size on the Section 22 development set, all other parameters</line>
+    </text>
+    <text cls="ft04" top="1070" left="162">
+      <line>remained unchanged from the English-to-German base translation model. During inference, we</line>
+    </text>
+    <text cls="ft04" top="1115" left="455">
+      <line>9</line>
+    </text>
+  </page>
+  <page number="10" width="918.0" height="1188.0">
+    <image src="attention010.png" width="918" height="1188"/>
+    <text cls="ft04" top="108" left="162">
+      <line>Table 4: The Transformer generalizes well to English constituency parsing (Results are on Section 23</line>
+    </text>
+    <text cls="ft04" top="124" left="162">
+      <line>of WSJ)</line>
+    </text>
+    <text cls="ft02" top="142" left="310">
+      <line>Parser</line>
+    </text>
+    <text cls="ft02" top="142" left="501">
+      <line>Training</line>
+    </text>
+    <text cls="ft02" top="142" left="622">
+      <line>WSJ 23 F1</line>
+    </text>
+    <text cls="ft04" top="160" left="227">
+      <line>Vinyals &amp;amp; Kaiser el al. (2014) &lt;a href="attention.html#12"&gt;[37]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="160" left="454">
+      <line>WSJ only, discriminative</line>
+    </text>
+    <text cls="ft04" top="160" left="644">
+      <line>88.3</line>
+    </text>
+    <text cls="ft04" top="176" left="259">
+      <line>Petrov et al. (2006) &lt;a href="attention.html#12"&gt;[29]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="176" left="454">
+      <line>WSJ only, discriminative</line>
+    </text>
+    <text cls="ft04" top="176" left="644">
+      <line>90.4</line>
+    </text>
+    <text cls="ft04" top="192" left="266">
+      <line>Zhu et al. (2013) &lt;a href="attention.html#12"&gt;[40]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="192" left="454">
+      <line>WSJ only, discriminative</line>
+    </text>
+    <text cls="ft04" top="192" left="644">
+      <line>90.4</line>
+    </text>
+    <text cls="ft04" top="209" left="267">
+      <line>Dyer et al. (2016) &lt;a href="attention.html#11"&gt;[8]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="209" left="454">
+      <line>WSJ only, discriminative</line>
+    </text>
+    <text cls="ft04" top="209" left="644">
+      <line>91.7</line>
+    </text>
+    <text cls="ft04" top="225" left="264">
+      <line>Transformer (4 layers)</line>
+    </text>
+    <text cls="ft04" top="225" left="454">
+      <line>WSJ only, discriminative</line>
+    </text>
+    <text cls="ft04" top="225" left="644">
+      <line>91.3</line>
+    </text>
+    <text cls="ft04" top="241" left="266">
+      <line>Zhu et al. (2013) &lt;a href="attention.html#12"&gt;[40]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="241" left="480">
+      <line>semi-supervised</line>
+    </text>
+    <text cls="ft04" top="241" left="644">
+      <line>91.3</line>
+    </text>
+    <text cls="ft04" top="258" left="245">
+      <line>Huang &amp;amp; Harper (2009) &lt;a href="attention.html#11"&gt;[14]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="258" left="480">
+      <line>semi-supervised</line>
+    </text>
+    <text cls="ft04" top="258" left="644">
+      <line>91.3</line>
+    </text>
+    <text cls="ft04" top="274" left="247">
+      <line>McClosky et al. (2006) &lt;a href="attention.html#12"&gt;[26]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="274" left="480">
+      <line>semi-supervised</line>
+    </text>
+    <text cls="ft04" top="274" left="644">
+      <line>92.1</line>
+    </text>
+    <text cls="ft04" top="290" left="227">
+      <line>Vinyals &amp;amp; Kaiser el al. (2014) &lt;a href="attention.html#12"&gt;[37]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="290" left="480">
+      <line>semi-supervised</line>
+    </text>
+    <text cls="ft04" top="290" left="644">
+      <line>92.1</line>
+    </text>
+    <text cls="ft04" top="307" left="264">
+      <line>Transformer (4 layers)</line>
+    </text>
+    <text cls="ft04" top="307" left="480">
+      <line>semi-supervised</line>
+    </text>
+    <text cls="ft04" top="307" left="644">
+      <line>92.7</line>
+    </text>
+    <text cls="ft04" top="323" left="259">
+      <line>Luong et al. (2015) &lt;a href="attention.html#11"&gt;[23]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="323" left="499">
+      <line>multi-task</line>
+    </text>
+    <text cls="ft04" top="323" left="644">
+      <line>93.0</line>
+    </text>
+    <text cls="ft04" top="340" left="267">
+      <line>Dyer et al. (2016) &lt;a href="attention.html#11"&gt;[8]&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="340" left="498">
+      <line>generative</line>
+    </text>
+    <text cls="ft04" top="340" left="644">
+      <line>93.3</line>
+    </text>
+    <text cls="ft04" top="394" left="162">
+      <line>increased the maximum output length to input length +</line>
+    </text>
+    <text cls="ft04" top="394" left="513">
+      <line>. We used a beam size of</line>
+    </text>
+    <text cls="ft04" top="394" left="683">
+      <line>and</line>
+    </text>
+    <text cls="ft04" top="411" left="162">
+      <line>for both WSJ only and the semi-supervised setting.</line>
+    </text>
+    <text cls="ft010" top="435" left="162">
+      <line>Our results in Table &lt;a href="attention.html#10"&gt;4 &lt;/a&gt;show that despite the lack of task-specific tuning our model performs sur-</line>
+      <line>prisingly well, yielding better results than all previously reported models with the exception of the</line>
+      <line>Recurrent Neural Network Grammar &lt;a href="attention.html#11"&gt;[8].&lt;/a&gt;</line>
+    </text>
+    <text cls="ft010" top="493" left="162">
+      <line>In contrast to RNN sequence-to-sequence models &lt;a href="attention.html#12"&gt;[37], &lt;/a&gt;the Transformer outperforms the Berkeley-</line>
+      <line>Parser &lt;a href="attention.html#12"&gt;[29] &lt;/a&gt;even when training only on the WSJ training set of 40K sentences.</line>
+    </text>
+    <text cls="ft06" top="549" left="162">
+      <line>7</line>
+    </text>
+    <text cls="ft06" top="549" left="189">
+      <line>Conclusion</line>
+    </text>
+    <text cls="ft010" top="585" left="162">
+      <line>In this work, we presented the Transformer, the first sequence transduction model based entirely on</line>
+      <line>attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with</line>
+      <line>multi-headed self-attention.</line>
+    </text>
+    <text cls="ft010" top="642" left="162">
+      <line>For translation tasks, the Transformer can be trained significantly faster than architectures based</line>
+      <line>on recurrent or convolutional layers. On both WMT 2014 English-to-German and WMT 2014</line>
+      <line>English-to-French translation tasks, we achieve a new state of the art. In the former task our best</line>
+      <line>model outperforms even all previously reported ensembles.</line>
+    </text>
+    <text cls="ft04" top="716" left="161">
+      <line>We are excited about the future of attention-based models and plan to apply them to other tasks. We</line>
+    </text>
+    <text cls="ft010" top="732" left="162">
+      <line>plan to extend the Transformer to problems involving input and output modalities other than text and</line>
+      <line>to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs</line>
+      <line>such as images, audio and video. Making generation less sequential is another research goals of ours.</line>
+    </text>
+    <text cls="ft04" top="790" left="162">
+      <line>The code we used to train and evaluate our models is available at</line>
+    </text>
+    <text cls="ft05" top="791" left="609">
+      <line>&lt;a href="https://github.com/tensorflow/tensor2tensor"&gt;https://github.com/&lt;/a&gt;</line>
+    </text>
+    <text cls="ft05" top="807" left="162">
+      <line>&lt;a href="https://github.com/tensorflow/tensor2tensor"&gt;tensorflow/tensor2tensor&lt;/a&gt;</line>
+    </text>
+    <text cls="ft04" top="806" left="350">
+      <line>&lt;a href="https://github.com/tensorflow/tensor2tensor"&gt;.&lt;/a&gt;</line>
+    </text>
+    <text cls="ft02" top="840" left="162">
+      <line>Acknowledgements</line>
+    </text>
+    <text cls="ft04" top="840" left="303">
+      <line>We are grateful to Nal Kalchbrenner and Stephan Gouws for their fruitful</line>
+    </text>
+    <text cls="ft04" top="856" left="162">
+      <line>comments, corrections and inspiration.</line>
+    </text>
+    <text cls="ft06" top="896" left="162">
+      <line>References</line>
+    </text>
+    <text cls="ft04" top="924" left="169">
+      <line>[1] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization.</line>
+    </text>
+    <text cls="ft04" top="940" left="304">
+      <line>&lt;a href="http://arxiv.org/abs/1607.06450"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="967" left="169">
+      <line>[2] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly</line>
+    </text>
+    <text cls="ft04" top="983" left="194">
+      <line>learning to align and translate.</line>
+    </text>
+    <text cls="ft04" top="983" left="417">
+      <line>, abs/1409.0473, 2014.</line>
+    </text>
+    <text cls="ft04" top="1010" left="169">
+      <line>[3] Denny Britz, Anna Goldie, Minh-Thang Luong, and Quoc V. Le. Massive exploration of neural</line>
+    </text>
+    <text cls="ft04" top="1027" left="194">
+      <line>machine translation architectures.</line>
+    </text>
+    <text cls="ft04" top="1027" left="437">
+      <line>, abs/1703.03906, 2017.</line>
+    </text>
+    <text cls="ft04" top="1054" left="169">
+      <line>[4] Jianpeng Cheng, Li Dong, and Mirella Lapata. Long short-term memory-networks for machine</line>
+    </text>
+    <text cls="ft04" top="1070" left="194">
+      <line>reading.</line>
+    </text>
+    <text cls="ft04" top="1070" left="447">
+      <line>&lt;a href="http://arxiv.org/abs/1601.06733"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>10</line>
+    </text>
+  </page>
+  <page number="11" width="918.0" height="1188.0">
+    <image src="attention011.png" width="918" height="1188"/>
+    <text cls="ft04" top="113" left="169">
+      <line>[5] Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Fethi Bougares, Holger Schwenk,</line>
+    </text>
+    <text cls="ft010" top="129" left="194">
+      <line>and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical</line>
+      <line>machine translation.</line>
+    </text>
+    <text cls="ft04" top="146" left="357">
+      <line>, abs/1406.1078, 2014.</line>
+    </text>
+    <text cls="ft04" top="175" left="169">
+      <line>[6] Francois Chollet. Xception: Deep learning with depthwise separable convolutions.</line>
+    </text>
+    <text cls="ft04" top="192" left="356">
+      <line>&lt;a href="http://arxiv.org/abs/1610.02357"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="221" left="169">
+      <line>[7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation</line>
+    </text>
+    <text cls="ft04" top="238" left="194">
+      <line>of gated recurrent neural networks on sequence modeling.</line>
+    </text>
+    <text cls="ft04" top="238" left="582">
+      <line>, abs/1412.3555, 2014.</line>
+    </text>
+    <text cls="ft04" top="267" left="169">
+      <line>[8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural</line>
+    </text>
+    <text cls="ft04" top="284" left="194">
+      <line>network grammars. In</line>
+    </text>
+    <text cls="ft04" top="284" left="429">
+      <line>, 2016.</line>
+    </text>
+    <text cls="ft04" top="313" left="169">
+      <line>[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu-</line>
+    </text>
+    <text cls="ft04" top="330" left="194">
+      <line>tional sequence to sequence learning.</line>
+    </text>
+    <text cls="ft04" top="330" left="635">
+      <line>, 2017.</line>
+    </text>
+    <text cls="ft04" top="360" left="162">
+      <line>[10] Alex Graves.</line>
+    </text>
+    <text cls="ft04" top="360" left="297">
+      <line>Generating sequences with recurrent neural networks.</line>
+    </text>
+    <text cls="ft04" top="376" left="296">
+      <line>&lt;a href="http://arxiv.org/abs/1308.0850"&gt;, &lt;/a&gt;2013.</line>
+    </text>
+    <text cls="ft04" top="406" left="162">
+      <line>[11] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for im-</line>
+    </text>
+    <text cls="ft04" top="422" left="194">
+      <line>age recognition. In</line>
+    </text>
+    <text cls="ft04" top="438" left="266">
+      <line>, pages 770–778, 2016.</line>
+    </text>
+    <text cls="ft04" top="468" left="162">
+      <line>[12] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in</line>
+    </text>
+    <text cls="ft04" top="484" left="194">
+      <line>recurrent nets: the difficulty of learning long-term dependencies, 2001.</line>
+    </text>
+    <text cls="ft04" top="514" left="162">
+      <line>[13] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory.</line>
+    </text>
+    <text cls="ft04" top="514" left="754">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="530" left="194">
+      <line>9(8):1735–1780, 1997.</line>
+    </text>
+    <text cls="ft04" top="560" left="162">
+      <line>[14] Zhongqiang Huang and Mary Harper. Self-training PCFG grammars with latent annotations</line>
+    </text>
+    <text cls="ft04" top="576" left="194">
+      <line>across languages. In</line>
+    </text>
+    <text cls="ft04" top="593" left="323">
+      <line>, pages 832–841. ACL, August 2009.</line>
+    </text>
+    <text cls="ft04" top="623" left="162">
+      <line>[15] Rafal Jozefowicz, Oriol Vinyals, Mike Schuster, Noam Shazeer, and Yonghui Wu. Exploring</line>
+    </text>
+    <text cls="ft04" top="639" left="194">
+      <line>the limits of language modeling.</line>
+    </text>
+    <text cls="ft04" top="639" left="592">
+      <line>&lt;a href="http://arxiv.org/abs/1602.02410"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="669" left="162">
+      <line>[16] Łukasz Kaiser and Samy Bengio. Can active memory replace attention? In</line>
+    </text>
+    <text cls="ft04" top="685" left="435">
+      <line>, 2016.</line>
+    </text>
+    <text cls="ft04" top="715" left="162">
+      <line>[17] Łukasz Kaiser and Ilya Sutskever. Neural GPUs learn algorithms. In</line>
+    </text>
+    <text cls="ft04" top="731" left="413">
+      <line>, 2016.</line>
+    </text>
+    <text cls="ft04" top="761" left="162">
+      <line>[18] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Ko-</line>
+    </text>
+    <text cls="ft04" top="777" left="194">
+      <line>ray Kavukcuoglu. Neural machine translation in linear time.</line>
+    </text>
+    <text cls="ft04" top="777" left="754">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="793" left="194">
+      <line>2017.</line>
+    </text>
+    <text cls="ft04" top="823" left="162">
+      <line>[19] Yoon Kim, Carl Denton, Luong Hoang, and Alexander M. Rush. Structured attention networks.</line>
+    </text>
+    <text cls="ft04" top="840" left="194">
+      <line>In</line>
+    </text>
+    <text cls="ft04" top="840" left="538">
+      <line>, 2017.</line>
+    </text>
+    <text cls="ft04" top="869" left="162">
+      <line>[20] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In</line>
+    </text>
+    <text cls="ft04" top="869" left="718">
+      <line>, 2015.</line>
+    </text>
+    <text cls="ft04" top="899" left="162">
+      <line>[21] Oleksii Kuchaiev and Boris Ginsburg. Factorization tricks for LSTM networks.</line>
+    </text>
+    <text cls="ft04" top="915" left="304">
+      <line>&lt;a href="http://arxiv.org/abs/1703.10722"&gt;, &lt;/a&gt;2017.</line>
+    </text>
+    <text cls="ft04" top="945" left="162">
+      <line>[22] Zhouhan Lin, Minwei Feng, Cicero Nogueira dos Santos, Mo Yu, Bing Xiang, Bowen</line>
+    </text>
+    <text cls="ft04" top="961" left="194">
+      <line>Zhou, and Yoshua Bengio. A structured self-attentive sentence embedding.</line>
+    </text>
+    <text cls="ft04" top="978" left="304">
+      <line>&lt;a href="http://arxiv.org/abs/1703.03130"&gt;, &lt;/a&gt;2017.</line>
+    </text>
+    <text cls="ft04" top="1007" left="162">
+      <line>[23] Minh-Thang Luong, Quoc V. Le, Ilya Sutskever, Oriol Vinyals, and Lukasz Kaiser. Multi-task</line>
+    </text>
+    <text cls="ft04" top="1024" left="194">
+      <line>sequence to sequence learning.</line>
+    </text>
+    <text cls="ft04" top="1024" left="583">
+      <line>&lt;a href="http://arxiv.org/abs/1511.06114"&gt;, &lt;/a&gt;2015.</line>
+    </text>
+    <text cls="ft04" top="1054" left="162">
+      <line>[24] Minh-Thang Luong, Hieu Pham, and Christopher D Manning. Effective approaches to attention-</line>
+    </text>
+    <text cls="ft04" top="1070" left="194">
+      <line>based neural machine translation.</line>
+    </text>
+    <text cls="ft04" top="1070" left="598">
+      <line>&lt;a href="http://arxiv.org/abs/1508.04025"&gt;, &lt;/a&gt;2015.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>11</line>
+    </text>
+  </page>
+  <page number="12" width="918.0" height="1188.0">
+    <image src="attention012.png" width="918" height="1188"/>
+    <text cls="ft04" top="113" left="162">
+      <line>[25] Mitchell P Marcus, Mary Ann Marcinkiewicz, and Beatrice Santorini. Building a large annotated</line>
+    </text>
+    <text cls="ft04" top="129" left="194">
+      <line>corpus of english: The penn treebank.</line>
+    </text>
+    <text cls="ft04" top="129" left="581">
+      <line>, 19(2):313–330, 1993.</line>
+    </text>
+    <text cls="ft04" top="164" left="162">
+      <line>[26] David McClosky, Eugene Charniak, and Mark Johnson. Effective self-training for parsing. In</line>
+    </text>
+    <text cls="ft04" top="181" left="754">
+      <line>,</line>
+    </text>
+    <text cls="ft04" top="197" left="194">
+      <line>pages 152–159. ACL, June 2006.</line>
+    </text>
+    <text cls="ft04" top="232" left="162">
+      <line>[27] Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention</line>
+    </text>
+    <text cls="ft04" top="249" left="194">
+      <line>model. In</line>
+    </text>
+    <text cls="ft04" top="249" left="570">
+      <line>, 2016.</line>
+    </text>
+    <text cls="ft04" top="284" left="162">
+      <line>[28] Romain Paulus, Caiming Xiong, and Richard Socher. A deep reinforced model for abstractive</line>
+    </text>
+    <text cls="ft04" top="300" left="194">
+      <line>summarization.</line>
+    </text>
+    <text cls="ft04" top="300" left="491">
+      <line>&lt;a href="http://arxiv.org/abs/1705.04304"&gt;, &lt;/a&gt;2017.</line>
+    </text>
+    <text cls="ft04" top="336" left="162">
+      <line>[29] Slav Petrov, Leon Barrett, Romain Thibaux, and Dan Klein. Learning accurate, compact,</line>
+    </text>
+    <text cls="ft04" top="352" left="194">
+      <line>and interpretable tree annotation. In</line>
+    </text>
+    <text cls="ft04" top="368" left="586">
+      <line>, pages 433–440. ACL, July</line>
+    </text>
+    <text cls="ft04" top="385" left="194">
+      <line>2006.</line>
+    </text>
+    <text cls="ft04" top="420" left="162">
+      <line>[30] Ofir Press and Lior Wolf. Using the output embedding to improve language models.</line>
+    </text>
+    <text cls="ft04" top="436" left="356">
+      <line>&lt;a href="http://arxiv.org/abs/1608.05859"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="471" left="162">
+      <line>[31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words</line>
+    </text>
+    <text cls="ft04" top="488" left="194">
+      <line>with subword units.</line>
+    </text>
+    <text cls="ft04" top="488" left="516">
+      <line>&lt;a href="http://arxiv.org/abs/1508.07909"&gt;, &lt;/a&gt;2015.</line>
+    </text>
+    <text cls="ft04" top="523" left="162">
+      <line>[32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton,</line>
+    </text>
+    <text cls="ft010" top="539" left="194">
+      <line>and Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts</line>
+      <line>layer.</line>
+    </text>
+    <text cls="ft04" top="556" left="431">
+      <line>&lt;a href="http://arxiv.org/abs/1701.06538"&gt;, &lt;/a&gt;2017.</line>
+    </text>
+    <text cls="ft04" top="591" left="162">
+      <line>[33] Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdi-</line>
+    </text>
+    <text cls="ft04" top="607" left="194">
+      <line>nov. Dropout: a simple way to prevent neural networks from overfitting.</line>
+    </text>
+    <text cls="ft04" top="624" left="307">
+      <line>, 15(1):1929–1958, 2014.</line>
+    </text>
+    <text cls="ft04" top="659" left="162">
+      <line>[34] Sainbayar Sukhbaatar, Arthur Szlam, Jason Weston, and Rob Fergus. End-to-end memory</line>
+    </text>
+    <text cls="ft04" top="675" left="194">
+      <line>networks. In C. Cortes, N. D. Lawrence, D. D. Lee, M. Sugiyama, and R. Garnett, editors,</line>
+    </text>
+    <text cls="ft04" top="692" left="525">
+      <line>, pages 2440–2448. Curran Associates,</line>
+    </text>
+    <text cls="ft04" top="708" left="194">
+      <line>Inc., 2015.</line>
+    </text>
+    <text cls="ft04" top="743" left="162">
+      <line>[35] Ilya Sutskever, Oriol Vinyals, and Quoc VV Le. Sequence to sequence learning with neural</line>
+    </text>
+    <text cls="ft04" top="760" left="194">
+      <line>networks. In</line>
+    </text>
+    <text cls="ft04" top="760" left="588">
+      <line>, pages 3104–3112, 2014.</line>
+    </text>
+    <text cls="ft04" top="795" left="162">
+      <line>[36] Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, and Zbigniew Wojna.</line>
+    </text>
+    <text cls="ft04" top="811" left="194">
+      <line>Rethinking the inception architecture for computer vision.</line>
+    </text>
+    <text cls="ft04" top="811" left="583">
+      <line>, abs/1512.00567, 2015.</line>
+    </text>
+    <text cls="ft04" top="846" left="162">
+      <line>[37] Vinyals &amp;amp; Kaiser, Koo, Petrov, Sutskever, and Hinton. Grammar as a foreign language. In</line>
+    </text>
+    <text cls="ft04" top="863" left="507">
+      <line>, 2015.</line>
+    </text>
+    <text cls="ft04" top="898" left="162">
+      <line>[38] Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V Le, Mohammad Norouzi, Wolfgang</line>
+    </text>
+    <text cls="ft010" top="914" left="194">
+      <line>Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et al. Google’s neural machine</line>
+      <line>translation system: Bridging the gap between human and machine translation.</line>
+    </text>
+    <text cls="ft04" top="947" left="304">
+      <line>&lt;a href="http://arxiv.org/abs/1609.08144"&gt;, &lt;/a&gt;2016.</line>
+    </text>
+    <text cls="ft04" top="982" left="162">
+      <line>[39] Jie Zhou, Ying Cao, Xuguang Wang, Peng Li, and Wei Xu. Deep recurrent models with</line>
+    </text>
+    <text cls="ft04" top="999" left="194">
+      <line>fast-forward connections for neural machine translation.</line>
+    </text>
+    <text cls="ft04" top="999" left="571">
+      <line>, abs/1606.04199, 2016.</line>
+    </text>
+    <text cls="ft04" top="1034" left="162">
+      <line>[40] Muhua Zhu, Yue Zhang, Wenliang Chen, Min Zhang, and Jingbo Zhu. Fast and accurate</line>
+    </text>
+    <text cls="ft04" top="1050" left="194">
+      <line>shift-reduce constituent parsing. In</line>
+    </text>
+    <text cls="ft04" top="1067" left="291">
+      <line>, pages 434–443. ACL, August 2013.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>12</line>
+    </text>
+  </page>
+  <page number="13" width="918.0" height="1188.0">
+    <image src="attention013.png" width="918" height="1188"/>
+    <text cls="ft06" top="111" left="162">
+      <line>Attention Visualizations</line>
+    </text>
+    <text cls="ft010" top="470" left="162">
+      <line>Figure 3: An example of the attention mechanism following long-distance dependencies in the</line>
+      <line>encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of</line>
+      <line>the verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only for</line>
+      <line>the word ‘making’. Different colors represent different heads. Best viewed in color.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>13</line>
+    </text>
+  </page>
+  <page number="14" width="918.0" height="1188.0">
+    <image src="attention014.png" width="918" height="1188"/>
+    <text cls="ft010" top="923" left="162">
+      <line>Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top:</line>
+      <line>Full attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5</line>
+      <line>and 6. Note that the attentions are very sharp for this word.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>14</line>
+    </text>
+  </page>
+  <page number="15" width="918.0" height="1188.0">
+    <image src="attention015.png" width="918" height="1188"/>
+    <text cls="ft010" top="905" left="162">
+      <line>Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the</line>
+      <line>sentence. We give two such examples above, from two different heads from the encoder self-attention</line>
+      <line>at layer 5 of 6. The heads clearly learned to perform different tasks.</line>
+    </text>
+    <text cls="ft04" top="1115" left="452">
+      <line>15</line>
+    </text>
+  </page>
+</document>
